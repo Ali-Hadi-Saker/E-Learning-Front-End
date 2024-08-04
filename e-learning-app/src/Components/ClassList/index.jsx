@@ -6,7 +6,7 @@ const ClassList = ()=>{
     return(
         <div>
             <h1>course list</h1>
-            <ClassCard/>
+            <ClassCard title={'Class Title'} description={'Class description'} instractor={'Class instractor'}/>
         </div>
     )
 }
