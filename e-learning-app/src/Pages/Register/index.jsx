@@ -2,7 +2,7 @@ import React from "react";
 import './style.css'
 
 
-const RegisterPage = ()=>{
+const Register = ()=>{
     return(
         <div className="flex column page center ">
             <h1>register page</h1>
@@ -20,4 +20,4 @@ const RegisterPage = ()=>{
 }
 
 
-export default RegisterPage
+export default Register
