@@ -1,7 +1,7 @@
 import React from "react";
 import ClassList from "../../Components/ClassList";  
 import NavBar from "../../Components/NavBar";
-import enrolledPage from "../EnrolledPage";
+import EnrolledPage from "../EnrolledPage";
 import { Route, Routes } from "react-router-dom";
 
 const Home = ()=>{
@@ -9,7 +9,7 @@ const Home = ()=>{
         <div className="flex column">
             <NavBar/> 
             <Routes>
-                <Route path="enrolledClasses" element={<enrolledPage/>}/>
+                <Route path="enrolledClasses" element={<EnrolledPage/>}/>
                 <Route path="" element={<ClassList/>}/>
             </Routes>
         </div>
