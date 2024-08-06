@@ -5,6 +5,7 @@ import './Styles/index.css'
 import Register from './Pages/Register';
 import Login from "./Pages/LoginPage";
 import Home from "./Pages/Home";
+import Admin from "./Pages/AdminPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/admin" element={<Admin/>}/>
 
 
         </Routes>
