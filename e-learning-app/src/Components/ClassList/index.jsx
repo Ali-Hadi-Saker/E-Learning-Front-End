@@ -30,6 +30,13 @@ const ClassList = ()=>{
         console.log(classes.length)
 
     },[dispatch])
+    if (loading) {
+        return <p>Loading classes...</p>;
+    }
+
+    if (error) {
+        return <p>Error loading classes: {error}</p>;
+    }
     return(
         <div className="flex column">
             <h1>course list</h1>
