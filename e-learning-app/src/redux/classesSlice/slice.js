@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    list:[],
+    classes:[],
     error: null,
     loading: false
 }
@@ -16,7 +16,7 @@ const classesSlice = createSlice({
         loadClasses: (state, action)=>{
             const {payload} = action
             state.loading = false
-            state.list = payload
+            state.classes = payload
         },
         errorOccured: (state, action)=>{
             const {payload} = action

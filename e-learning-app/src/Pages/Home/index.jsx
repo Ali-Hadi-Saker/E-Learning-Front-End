@@ -4,7 +4,7 @@ import ClassList from "../../Components/ClassList";
 
 const Home = ()=>{
     return(
-        <div>
+        <div className="flex column">
             <h1>Home page</h1>
             <ClassList/>
         </div>
