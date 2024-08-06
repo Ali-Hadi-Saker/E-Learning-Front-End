@@ -32,6 +32,6 @@ const classesSlice = createSlice({
     }
 })
 
-export const {fetchingClasses, loadClasses, errorOccured} = classesSlice.actions
+export const {fetchingClasses, loadClasses, errorOccured, loadEnrolledClasses} = classesSlice.actions
 
 export const classesReducer = classesSlice.reducer
