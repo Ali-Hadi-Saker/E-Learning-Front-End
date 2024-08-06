@@ -1,0 +1,34 @@
+.navbar {
+    background-color: #3b4c61;
+    padding: 10px;
+    justify-content: flex-end;
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+
+}
+
+.nav-item {
+    margin: 0;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    background-color: #fff;
+    color: #333;
+    padding: 5px;
+}
+
+.active {
+    font-weight: bold;
+    text-decoration: underline;
+}

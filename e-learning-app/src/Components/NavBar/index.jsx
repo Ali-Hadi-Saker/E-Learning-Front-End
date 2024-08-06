@@ -4,8 +4,8 @@ import "./style.css";
 
 const NavBar = () => {
     return (
-        <nav className="navbar">
-            <ul className="nav-list">
+        <nav className="navbar flex">
+            <ul className="nav-list flex">
                 <li className="nav-item">
                     <NavLink 
                         to="/all-classes" 
