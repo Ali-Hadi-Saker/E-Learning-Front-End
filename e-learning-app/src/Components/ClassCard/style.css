@@ -13,3 +13,10 @@
 button{
     width: 50%;
 }
+.signup-link{
+    font-size: 12px;
+    
+}
+.signup-link a {
+    text-decoration: none;
+  }

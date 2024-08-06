@@ -24,3 +24,11 @@ button{
     border: none;
     outline: none;
 }
+
+.login-link{
+    font-size: 12px;
+    
+}
+.login-link a {
+    text-decoration: none;
+  }
