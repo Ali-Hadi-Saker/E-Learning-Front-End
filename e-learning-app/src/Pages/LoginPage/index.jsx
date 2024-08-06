@@ -1,6 +1,6 @@
 import React from "react"; 
 import './style.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate   } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios"
 
@@ -10,6 +10,7 @@ const Login = ()=>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate()
     const handleChange = (e)=>{
         const {name, value} = e.target
         if(name === 'email') setEmail(value)
@@ -31,6 +32,9 @@ const Login = ()=>{
         try {
             const data = await fetchUser(email, password)
             console.log(data);
+            if(data.message === 'success'){
+                navigate('/home')
+            }
         } catch (error) {
             console.log(error);
         }

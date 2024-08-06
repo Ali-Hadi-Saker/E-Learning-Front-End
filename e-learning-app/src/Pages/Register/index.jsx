@@ -1,6 +1,6 @@
 import React from "react"; 
 import './style.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios'
 
@@ -10,6 +10,7 @@ const Register = ()=>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const navigate = useNavigate()
     const handleChange = (e)=>{
         const {name, value} = e.target
         if(name === 'name') setName(value)
@@ -33,6 +34,9 @@ const Register = ()=>{
         try{
             const data = await fetchUser(name, email, password)
             console.log(data)
+            if(data.message === 'success'){
+                navigate('/login')
+            }
         }catch(e){
             console.log(e)
         }
