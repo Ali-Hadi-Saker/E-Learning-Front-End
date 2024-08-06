@@ -7,9 +7,7 @@ import { Route, Routes } from "react-router-dom";
 const Home = ()=>{
     return(
         <div className="flex column">
-            <NavBar/>
-
- 
+            <NavBar/> 
             <Routes>
                 <Route path="enrolledClasses" element={<enrolledPage/>}/>
                 <Route path="" element={<ClassList/>}/>

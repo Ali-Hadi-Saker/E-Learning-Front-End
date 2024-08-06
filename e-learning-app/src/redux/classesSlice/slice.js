@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     classes:[],
     error: null,
-    loading: false
+    loading: false,
+    enrolledClasses:[]
 }
 
 const classesSlice = createSlice({
@@ -17,6 +18,11 @@ const classesSlice = createSlice({
             const {payload} = action
             state.loading = false
             state.classes = payload
+        },
+        loadEnrolledClasses: (state, action)=>{
+            const {payload} = action
+            state.loading = false
+            state.enrolledClasses = payload
         },
         errorOccured: (state, action)=>{
             const {payload} = action
