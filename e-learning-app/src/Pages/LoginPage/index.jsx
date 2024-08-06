@@ -33,6 +33,8 @@ const Login = ()=>{
             const data = await fetchUser(email, password)
             console.log(data);
             if(data.message === 'success'){
+                const token = data.token
+                localStorage.setItem('token',token)
                 navigate('/home')
             }
         } catch (error) {
