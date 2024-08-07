@@ -1,13 +1,43 @@
 import './style.css';
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchingClasses, loadClasses, errorOccured } from "../../redux/classesSlice/slice";
 import ClassCard from '../../Components/ClassCard';
 
 const AdminPage = () => {
+    const [title, settTitle] = useState()
+    const [description, setDescription] = useState()
+    const [instructor, setInstructor] = useState()
+
     const dispatch = useDispatch()
     const {classes, loading, error, enrolledClasses} = useSelector(state => state.classes)
+
+    const handleChange = (e)=>{
+        const {name, value} = e.target
+        if(name === 'title') settTitle(value)
+        if(name === 'description') setDescription(value)
+        if(name === 'instructor') setInstructor(value)
+
+    }
+
+    const handleSubmit = async()=>{
+        try {
+            const token = localStorage.getItem('token')
+            const {data} = await axios.post('http://localhost:8080/classes/create',{
+                title,
+                instructor,
+                description
+            },{
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            } )
+            console.log(data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
     const fetchClasses = async()=>{
         dispatch(fetchingClasses())
         try{
@@ -73,23 +103,26 @@ const AdminPage = () => {
                 <h2>Create New Class</h2>
                 <input
                     type="text"
+                    name='title'
                     placeholder="Title"
-                    value={''}
-                    onChange={''}
+                    value={title}
+                    onChange={handleChange}
                 />
                 <input
                     type="text"
+                    name='description'
                     placeholder="Description"
-                    value={''}
-                    onChange={''}
+                    value={description}
+                    onChange={handleChange}
                 />
                 <input
+                    name='instructor'
                     type="text"
                     placeholder="Instructor"
-                    value={''}
-                    onChange={''}
+                    value={instructor}
+                    onChange={handleChange}
                 />
-                <button onClick={''}>Create Class</button>
+                <button onClick={handleSubmit}>add Class</button>
             </div>
         </div>
     );
