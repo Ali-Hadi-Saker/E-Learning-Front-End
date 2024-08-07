@@ -28,8 +28,20 @@ const AdminPage = () => {
         fetchClasses()
 
     },[dispatch])
-    const handleDeleteClass = ()=>{
+    const handleDeleteClass = async(classId)=>{
         console.log('class delted')
+        try{
+            const token = localStorage.getItem('token')
+            const response = await axios(`http://localhost:8080/classes/${classId}/delete`,{
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+                
+            })
+            console.log(response.data.message)
+        }catch(e){
+            console.log(e)
+        }
     }
     console.log(classes)
 
@@ -53,7 +65,7 @@ const AdminPage = () => {
                             </button>
                             </div>
                             
-                        </li>                    ))
+                        </li>))
                 }
             </div>
 
