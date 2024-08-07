@@ -7,6 +7,9 @@
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.285);
     
 }
+.card-cont{
+    margin: 10px 20px;
+}
 .ClassTitle{
     padding-bottom: 40px;
 }
@@ -20,3 +23,7 @@ button{
 .signup-link a {
     text-decoration: none;
   }
+
+button{
+    cursor: pointer;
+}

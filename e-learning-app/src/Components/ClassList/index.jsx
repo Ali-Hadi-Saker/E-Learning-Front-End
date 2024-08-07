@@ -27,9 +27,23 @@ const ClassList = ()=>{
     }
     useEffect(()=>{
         fetchClasses()
-        console.log(classes.length)
+        console.log(classes[0]._id)
 
     },[dispatch])
+    const handleEnroll =async(classId)=>{
+        try{
+            const token = localStorage.getItem('token')
+            const {data} = await axios(`http://localhost:8080/classes/${classId}/enroll`, {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(data)
+
+        }catch(e){
+            console.log(e)
+        }
+    }
     if (loading) {
         return <p>Loading classes...</p>;
     }
@@ -43,7 +57,7 @@ const ClassList = ()=>{
             <div className="flex">
             {
                 classes.map((classItem)=>(
-                    <ClassCard classData={classItem} text={'enroll'}/>
+                    <ClassCard classData={classItem} text={'enroll'} onMousseClick={handleEnroll(classItem._id)}/>
                 ))
             }
             </div>
