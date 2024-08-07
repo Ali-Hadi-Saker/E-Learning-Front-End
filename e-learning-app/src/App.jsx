@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './Styles/utilities.css'
 import './Styles/index.css'
+import './Styles/colors.css'
+
 import { Provider } from "react-redux";
 
 import Register from './Pages/Register';

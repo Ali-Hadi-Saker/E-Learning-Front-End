@@ -34,7 +34,7 @@ const EnrolledPage = ()=>{
             <div className="flex">
             {
                 enrolledClasses.map((classItem)=>(
-                    <ClassCard classData={classItem}/>
+                    <ClassCard classData={classItem} text={'withdraw'} color={'red-bg'}/>
                 ))
             }
             </div>

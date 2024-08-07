@@ -43,7 +43,7 @@ const ClassList = ()=>{
             <div className="flex">
             {
                 classes.map((classItem)=>(
-                    <ClassCard classData={classItem}/>
+                    <ClassCard classData={classItem} text={'enroll'}/>
                 ))
             }
             </div>
