@@ -7,7 +7,7 @@ import { fetchingClasses, loadClasses, errorOccured } from "../../redux/classesS
 
 const ClassList = ()=>{
     const dispatch = useDispatch()
-    const {classes, loading, error} = useSelector(state => state.classes)
+    const {classes, loading, error, enrolledClasses} = useSelector(state => state.classes)
 
     const fetchClasses = async()=>{
         dispatch(fetchingClasses())
@@ -27,23 +27,28 @@ const ClassList = ()=>{
     }
     useEffect(()=>{
         fetchClasses()
-        console.log(classes[0]._id)
 
     },[dispatch])
     const handleEnroll =async(classId)=>{
         try{
             const token = localStorage.getItem('token')
-            const {data} = await axios(`http://localhost:8080/classes/${classId}/enroll`, {
+            const {data} = await axios.get(`http://localhost:8080/classes/${classId}/enroll`, {
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log(data)
-
+            
+            
         }catch(e){
-            console.log(e)
+            console.log(enrolledClasses)
+            console.log(classes)
+
+            alert("already enrolled")
         }
     }
+    const nonEnrolledClasses = classes.filter(
+        classItem => !enrolledClasses.some(enrolledClass => enrolledClass._id === classItem._id)
+    )
     if (loading) {
         return <p>Loading classes...</p>;
     }
@@ -56,8 +61,8 @@ const ClassList = ()=>{
             <h1>course list</h1>
             <div className="flex">
             {
-                classes.map((classItem)=>(
-                    <ClassCard classData={classItem} text={'enroll'} onMousseClick={handleEnroll(classItem._id)}/>
+                nonEnrolledClasses.map((classItem)=>(
+                    <ClassCard classData={classItem} text={'enroll'} onMousseClick={()=>handleEnroll(classItem._id)}/>
                 ))
             }
             </div>
