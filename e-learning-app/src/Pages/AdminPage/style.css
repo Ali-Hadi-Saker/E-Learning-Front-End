@@ -18,6 +18,9 @@
     margin-bottom: 20px;
     color: #555;
 }
+.btns{
+    gap: 10px
+}
 
 .admin-dashboard .class-list {
     display: grid;

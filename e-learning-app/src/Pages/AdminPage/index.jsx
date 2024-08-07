@@ -73,8 +73,9 @@ const AdminPage = () => {
             console.log(e)
         }
     }
-    console.log(classes)
-
+    const handleUpload = ()=>{
+        console.log('upload')
+    }
     return (
         <div className="admin-dashboard">
             <h1>Admin Dashboard</h1>
@@ -90,9 +91,14 @@ const AdminPage = () => {
                                 <p>{classItem.description}</p>
                                 <p>Instructor: {classItem.instructor}</p>
                                 </div>
-                                <button className="delete-button red-bg" onClick={() => handleDeleteClass(classItem._id)}>
-                                Delete
-                            </button>
+                                <div className='flex btns'>
+                                    <button className="delete-button red-bg" onClick={() => handleDeleteClass(classItem._id)}>
+                                    Delete
+                                    </button>
+                                    <button className="delete-button green-bg" onClick={() => handleUpload()}>
+                                        upload
+                                    </button>
+                                </div>
                             </div>
                             
                         </li>))
