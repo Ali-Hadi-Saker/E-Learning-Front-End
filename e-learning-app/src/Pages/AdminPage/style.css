@@ -66,3 +66,19 @@
 .admin-dashboard .form-container button:hover {
     background-color: #0056b3;
 }
+
+.class-details{
+    justify-content: space-between;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.class-item{
+    list-style-type: none;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.delete-button{
+    width: 50px;
+    height: 50px;
+}
