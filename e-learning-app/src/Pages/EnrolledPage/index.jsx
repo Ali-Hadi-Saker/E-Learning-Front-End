@@ -28,13 +28,17 @@ const EnrolledPage = ()=>{
         fetchEnrolledClasses()
         console.log(enrolledClasses)
     },[dispatch])
+
+    const handleDownload =()=>{
+        console.log("download file")
+    }
     return(
         <div className="flex column">
             <h1>enrolled course list</h1>
             <div className="flex">
             {
                 enrolledClasses.map((classItem)=>(
-                    <ClassCard classData={classItem} text={'withdraw'} color={'red-bg'}/>
+                    <ClassCard classData={classItem} text={'withdraw'} color={'red-bg'} onDownloadClick={()=>handleDownload()}/>
                 ))
             }
             </div>

@@ -37,7 +37,7 @@ const ClassList = ()=>{
                     Authorization: `Bearer ${token}`
                 }
             })
-            
+            console.log(data.message)
             
         }catch(e){
             console.log(enrolledClasses)
