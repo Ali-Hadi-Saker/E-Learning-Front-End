@@ -29,16 +29,35 @@ const EnrolledPage = ()=>{
         console.log(enrolledClasses)
     },[dispatch])
 
-    const handleDownload =()=>{
-        console.log("download file")
-    }
+    const handleDownload = async (classId, filename) => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`http://localhost:8080/files/${classId}/download/${filename}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                responseType: 'blob', // ensures the response is treated as a file
+            });
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', filename); // Set the filename
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (e) {
+            console.error('Error during file download:', e.message);
+        }
+    };
+    
+    
     return(
         <div className="flex column">
             <h1>enrolled course list</h1>
             <div className="flex">
             {
                 enrolledClasses.map((classItem)=>(
-                    <ClassCard classData={classItem} text={'withdraw'} color={'red-bg'} onDownloadClick={()=>handleDownload()}/>
+                    <ClassCard classData={classItem} text={'withdraw'} color={'red-bg'} onDownloadClick={()=>handleDownload(classItem._id, classItem.files[0].filename)}/>
                 ))
             }
             </div>
