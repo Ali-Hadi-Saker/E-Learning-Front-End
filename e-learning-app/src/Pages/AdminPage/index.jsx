@@ -6,9 +6,11 @@ import { fetchingClasses, loadClasses, errorOccured } from "../../redux/classesS
 import ClassCard from '../../Components/ClassCard';
 
 const AdminPage = () => {
-    const [title, settTitle] = useState()
-    const [description, setDescription] = useState()
-    const [instructor, setInstructor] = useState()
+    const [title, settTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [instructor, setInstructor] = useState('')
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [currentClassId, setCurrentClassId] = useState(null);
 
     const dispatch = useDispatch()
     const {classes, loading, error, enrolledClasses} = useSelector(state => state.classes)
@@ -20,6 +22,10 @@ const AdminPage = () => {
         if(name === 'instructor') setInstructor(value)
 
     }
+    const handleFileChange = (e, classId) => {
+        setSelectedFile(e.target.files[0]);
+        setCurrentClassId(classId);
+    };
 
     const handleSubmit = async()=>{
         try {
@@ -73,9 +79,29 @@ const AdminPage = () => {
             console.log(e)
         }
     }
-    const handleUpload = ()=>{
-        console.log('upload')
-    }
+    const handleUpload = async () => {
+        if (!selectedFile || !currentClassId) return;
+
+        try {
+            const token = localStorage.getItem('token');
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('classId', currentClassId);
+
+            const { data } = await axios.post('http://localhost:8080/files/upload', formData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            console.log(data);
+            // Reset file input and class ID
+            setSelectedFile(null);
+            setCurrentClassId(null);
+        } catch (error) {
+            console.log('Error during file upload:', error.message);
+        }
+    };
     return (
         <div className="admin-dashboard">
             <h1>Admin Dashboard</h1>
@@ -95,9 +121,14 @@ const AdminPage = () => {
                                     <button className="delete-button red-bg" onClick={() => handleDeleteClass(classItem._id)}>
                                     Delete
                                     </button>
-                                    <button className="delete-button green-bg" onClick={() => handleUpload()}>
+                                    
+                                    <button className="delete-button green-bg" onClick={() => handleUpload(classItem._id)}>
                                         upload
                                     </button>
+                                    <input
+                                        type="file"
+                                        onChange={(e) => handleFileChange(e, classItem._id)}
+                                    />
                                 </div>
                             </div>
                             
