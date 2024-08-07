@@ -35,7 +35,12 @@ const Login = ()=>{
             if(data.message === 'success'){
                 const token = data.token
                 localStorage.setItem('token',token)
-                navigate('/home')
+                if(data.user.role === 'admin'){
+                    navigate('/admin')
+                }else{
+                    navigate('/home')
+                }
+                
             }
         } catch (error) {
             console.log(error);
